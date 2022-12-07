@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(screen_capture_example_opencv)
 
-find_package(screen_capture_lite REQUIRED)
+find_package(screen_capture_lite_shared REQUIRED)
 
 find_package(OpenCV REQUIRED videoio highgui)
 
@@ -12,11 +12,11 @@ find_package(OpenCV REQUIRED videoio highgui)
 #endforeach()
 
 
-set(${PROJECT_NAME}_PLATFORM_LIBS ${screen_capture_lite_LIBS} ${OpenCV_LIBS})
+set(${PROJECT_NAME}_PLATFORM_LIBS ${screen_capture_lite_shared_LIBS} ${OpenCV_LIBS})
 
 include_directories(
 	../include 
-	${screen_capture_lite_INCLUDE_DIRS}
+	${screen_capture_lite_shared_INCLUDE_DIRS}
 )
 
 option(BUILD_SHARED_LIBS OFF) 
@@ -30,7 +30,7 @@ add_executable(${PROJECT_NAME}
 	Screen_Capture_Example_OpenCV.cpp
 )
 
-message(STATUS "screen_capture_lite_LIBS=${screen_capture_lite_LIBS}")
+message(STATUS "screen_capture_lite_LIBS=${screen_capture_lite_shared_LIBS}")
 
 target_link_libraries(${PROJECT_NAME} ${${PROJECT_NAME}_PLATFORM_LIBS})  
 
